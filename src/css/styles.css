@@ -21,3 +21,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.submit-btn {
+  /* width: 90px;
+  height: 40px; */
+  
+}
+
+
+.hiden {
+  display: none;
+}
