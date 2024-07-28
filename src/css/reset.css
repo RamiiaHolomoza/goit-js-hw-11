@@ -39,6 +39,9 @@ img {
   height: auto;
 }
 
+input{
+background-color: #fff;
+}
 
 button:hover,
 button:focus,
@@ -54,7 +57,7 @@ input:hover,
 input:focus,
 input:active {
   outline: none;
-  background-color: transparent;
+  background-color: #fff;
   /* border: none; */
   color: inherit;
   text-decoration: none;

@@ -5,22 +5,37 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 import searchImagesByQuery from './js/pixabay-api.js';
-import { showError } from './js/render-functions.js';
+import { showError, createGallary, cleanGallery } from './js/render-functions.js';
 
 const form = document.querySelector('.gallery-form');
+const input = document.querySelector('.input-gallery');
+const loader = document.querySelector('.loading');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const query = event.target.elements.query.value.trim();
+    cleanGallery(); //  очищуєм галерею
+    loader.classList.remove('hidden') // прибираємо клас прихованого спану
 
+    const query = input.value.trim();
     if (query === '') {
         showError('Please enter a search query.');
+        loader.classList.add("hidden")
         return;
     }
 
     searchImagesByQuery(query)
         .then((data) => {
+            if (data.total === 0) {
+                showError('Sorry, there are no images matching your search query. Please try again!')
+                loader.classList.add("hidden")
+                return;
+            }
+            // else {
+            //     createGallary(data)
+            // }
+            loader.classList.add("hidden")
             console.log(data);
+            createGallary(data)
         })
         .catch((error) => {
             showError(error);
