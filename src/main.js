@@ -28,6 +28,7 @@ form.addEventListener('submit', (event) => {
             if (data.total === 0) {
                 showError('Sorry, there are no images matching your search query. Please try again!')
                 loader.classList.add("hidden")
+                input.value = '';
                 return;
             }
             // else {
@@ -35,9 +36,12 @@ form.addEventListener('submit', (event) => {
             // }
             loader.classList.add("hidden")
             console.log(data);
-            createGallary(data)
+            createGallary(data);
+            input.value = '';
         })
         .catch((error) => {
             showError(error);
+            input.value = '';
         });
+    
 });
